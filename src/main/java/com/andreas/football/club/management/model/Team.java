@@ -4,14 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "teams")
-public class Team {
-    @Id
-    @Column(name = "uuid")
-    private String uuid;
-
-    @Column(name = "name")
-    private String name;
-
+public class Team extends BaseEntity{
     @Column(name = "home_stadium")
     private String homeStadium;
 
@@ -21,20 +14,11 @@ public class Team {
     public Team() {
     }
 
-
     public Team(String name, String homeStadium, int trophies, String uuid) {
-        this.name = name;
+        super();
         this.homeStadium = homeStadium;
         this.trophies = trophies;
-        this.uuid = uuid;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getHomeStadium() {
@@ -49,14 +33,4 @@ public class Team {
         return trophies;
     }
 
-    public void setTrophies(int trophies) {
-        this.trophies = trophies;
-    }
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
 }
