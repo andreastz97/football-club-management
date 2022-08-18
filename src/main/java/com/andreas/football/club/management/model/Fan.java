@@ -1,12 +1,16 @@
 package com.andreas.football.club.management.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "fans")
 public class Fan extends BaseEntity {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "player_uuid")
+    private Player player;
+
     private String favouriteTeam;
+
     public Fan() {
     }
 

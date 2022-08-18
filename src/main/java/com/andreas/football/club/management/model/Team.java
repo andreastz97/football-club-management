@@ -1,10 +1,21 @@
 package com.andreas.football.club.management.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "teams")
 public class Team {
+    @JsonIgnore
+    @OneToMany(mappedBy = "team")
+    private Set<Player> teamPlayers = new HashSet<>();
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "team")
+    private Coach coach;
+
     @Id
     @Column(name = "uuid")
     private String uuid;
@@ -56,4 +67,21 @@ public class Team {
     public void setTrophies(int trophies) {
         this.trophies = trophies;
     }
+
+    public Set<Player> getTeamPlayers() {
+        return teamPlayers;
+    }
+
+    public void setTeamPlayers(Set<Player> teamPlayers) {
+        this.teamPlayers = teamPlayers;
+    }
+
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public void setCoach(Coach coach) {
+        this.coach = coach;
+    }
+
 }
