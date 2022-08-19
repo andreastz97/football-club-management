@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FanService extends BaseEntityService {
+public class FanService extends PersonService {
     @Autowired
     private FanRepository fanRepository;
 
@@ -28,8 +28,9 @@ public class FanService extends BaseEntityService {
     }
 
     @Transactional
-    public void createFan(String uuid, String firstName, String lastName, int age, String favouriteTeam) {
+    public void createFan(String uuid , String firstName, String lastName, int age, String favouriteTeam) {
         Fan fan = new Fan();
+        fan.setUuid(uuid);
         fan.setFirstName(firstName);
         fan.setLastName(lastName);
         fan.setAge(age);
@@ -43,5 +44,8 @@ public class FanService extends BaseEntityService {
         fan.setLastName(lastName);
         fan.setAge(age);
         fan.setFavouriteTeam(favouriteTeam);
+    }
+    public void deleteFan(String uuid){
+        fanRepository.deleteById(Integer.valueOf(uuid));
     }
 }

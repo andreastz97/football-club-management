@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CoachService extends BaseEntityService {
+public class CoachService extends PersonService {
     @Autowired
     private CoachRepository coachRepository;
 
@@ -32,7 +32,7 @@ public class CoachService extends BaseEntityService {
     @Transactional
     public void createCoach(String uuid, String firstName, String lastName, int age, TacticType tactic) {
         Coach coach = new Coach();
-
+        coach.setUuid(uuid);
         coach.setFirstName(firstName);
         coach.setLastName(lastName);
         coach.setAge(age);
@@ -47,6 +47,11 @@ public class CoachService extends BaseEntityService {
         coach.setAge(age);
         coach.setTactic(tactic);
 
+    }
+
+    @Transactional
+    public void deleteCoach(String uuid) {
+        coachRepository.deleteById(Integer.valueOf(uuid));
     }
 
 }

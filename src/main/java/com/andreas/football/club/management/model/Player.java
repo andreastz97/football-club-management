@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "players")
-public class Player extends BaseEntity {
+public class Player extends Person {
 
     @JsonIgnore
     @OneToMany(mappedBy = "player")
@@ -24,8 +24,10 @@ public class Player extends BaseEntity {
     private int goals;
 
 
-    public Player(Integer integer) {
-        super();
+    public Player() {
+    }
+
+    public Player(String uuid) {
     }
 
     public Player(String uuid, String firstName, String lastName, int age, PositionType position, int goals) {
@@ -38,7 +40,9 @@ public class Player extends BaseEntity {
         return position;
     }
 
-    public void setPosition(PositionType position) {this.position = position;}
+    public void setPosition(PositionType position) {
+        this.position = position;
+    }
 
     public int getGoals() {
         return goals;

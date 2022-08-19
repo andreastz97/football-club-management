@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "coaches")
-public class Coach extends BaseEntity {
+public class Coach extends Person {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "coaches_team")
     private Team team;

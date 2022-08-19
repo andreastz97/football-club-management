@@ -2,7 +2,7 @@ package com.andreas.football.club.management.dto;
 
 import com.andreas.football.club.management.model.PositionType;
 
-public class SavePlayerDTO extends SaveBaseEntityDTO{
+public class SavePlayerDTO extends SavePersonDTO {
     private PositionType position;
     private int goals;
 

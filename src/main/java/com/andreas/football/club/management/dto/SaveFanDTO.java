@@ -1,6 +1,6 @@
 package com.andreas.football.club.management.dto;
 
-public class SaveFanDTO extends SaveBaseEntityDTO{
+public class SaveFanDTO extends SavePersonDTO {
     private String favouriteTeam;
 
     public String getFavouriteTeam() {

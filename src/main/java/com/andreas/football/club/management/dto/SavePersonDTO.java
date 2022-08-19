@@ -1,6 +1,6 @@
 package com.andreas.football.club.management.dto;
 
-public class SaveBaseEntityDTO {
+public class SavePersonDTO {
     private String uuid;
     private String firstName;
     private String lastName;

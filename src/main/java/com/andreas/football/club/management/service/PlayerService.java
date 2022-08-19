@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PlayerService extends BaseEntityService {
+public class PlayerService extends PersonService {
     @Autowired
     PlayerRepository playerRepository;
 
@@ -31,7 +31,8 @@ public class PlayerService extends BaseEntityService {
 
     @Transactional
     public void createPlayer(String uuid, String firstName, String lastName, int age, PositionType position, int goals) {
-        Player player = new Player(Integer.valueOf(uuid));
+        Player player = new Player(uuid);
+        player.setUuid(uuid);
         player.setFirstName(firstName);
         player.setLastName(lastName);
         player.setAge(age);
@@ -42,11 +43,15 @@ public class PlayerService extends BaseEntityService {
 
     @Transactional
     public void updatePlayer(String uuid, String firstName, String lastName, int age, PositionType position, int goals) {
-        Player player = new Player(Integer.valueOf(uuid));
+        Player player = new Player(uuid);
         player.setFirstName(firstName);
         player.setLastName(lastName);
         player.setAge(age);
         player.setPosition(position);
         player.setGoals(goals);
+    }
+    @Transactional
+    public void deletePlayer(String uuid){
+        playerRepository.deleteById(Integer.valueOf(uuid));
     }
 }

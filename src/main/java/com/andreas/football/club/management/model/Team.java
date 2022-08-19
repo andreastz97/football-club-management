@@ -26,7 +26,10 @@ public class Team {
     @Column(name = "trophies")
     private int trophies;
 
-    public Team(Integer integer) {
+    public Team() {
+    }
+
+    public Team(String uuid) {
     }
 
     public Team(String uuid, String name, String homeStadium, int trophies) {

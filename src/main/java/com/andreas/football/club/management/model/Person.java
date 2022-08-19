@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class BaseEntity {
+public class Person {
     @Id
     @Column(name = "uuid")
     private String uuid;
@@ -16,10 +16,10 @@ public class BaseEntity {
     @Column(name = "age")
     private int age;
 
-    public BaseEntity() {
+    public Person() {
     }
 
-    public BaseEntity(String uuid, String firstName, String lastName, int age) {
+    public Person(String uuid, String firstName, String lastName, int age) {
         this.uuid = uuid;
         this.firstName = firstName;
         this.lastName = lastName;
