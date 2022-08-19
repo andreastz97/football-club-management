@@ -24,7 +24,7 @@ public class Player extends BaseEntity {
     private int goals;
 
 
-    public Player() {
+    public Player(Integer integer) {
         super();
     }
 
@@ -37,6 +37,8 @@ public class Player extends BaseEntity {
     public PositionType getPosition() {
         return position;
     }
+
+    public void setPosition(PositionType position) {this.position = position;}
 
     public int getGoals() {
         return goals;

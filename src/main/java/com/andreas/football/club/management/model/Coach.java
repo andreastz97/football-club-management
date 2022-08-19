@@ -1,4 +1,5 @@
 package com.andreas.football.club.management.model;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,8 +15,24 @@ public class Coach extends BaseEntity {
     public Coach() {
     }
 
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     public Coach(String uuid, String firstName, String lastName, int age, TacticType tactic) {
         super(uuid, firstName, lastName, age);
+        this.tactic = tactic;
+    }
+
+    public TacticType getTactic() {
+        return tactic;
+    }
+
+    public void setTactic(TacticType tactic) {
         this.tactic = tactic;
     }
 }
