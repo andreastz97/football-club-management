@@ -30,9 +30,8 @@ public class CoachService extends PersonService {
     }
 
     @Transactional
-    public void createCoach(String uuid, String firstName, String lastName, int age, TacticType tactic) {
+    public void createCoach(String firstName, String lastName, int age, TacticType tactic) {
         Coach coach = new Coach();
-        coach.setUuid(uuid);
         coach.setFirstName(firstName);
         coach.setLastName(lastName);
         coach.setAge(age);

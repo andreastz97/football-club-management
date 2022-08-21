@@ -1,18 +1,9 @@
 package com.andreas.football.club.management.dto;
 
 public class SavePersonDTO {
-    private String uuid;
     private String firstName;
     private String lastName;
     private int age;
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
 
     public String getFirstName() {
         return firstName;

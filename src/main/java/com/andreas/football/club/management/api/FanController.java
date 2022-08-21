@@ -28,7 +28,7 @@ public class FanController {
 
     @PostMapping
     public void createFan(@RequestBody SaveFanDTO request) {
-        fanService.createFan(request.getUuid(), request.getFirstName(), request.getLastName(), request.getAge(), request.getFavouriteTeam());
+        fanService.createFan(request.getFirstName(), request.getLastName(), request.getAge(), request.getFavouriteTeam());
     }
 
     @PutMapping("{uuid}")

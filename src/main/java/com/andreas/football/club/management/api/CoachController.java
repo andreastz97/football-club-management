@@ -30,7 +30,7 @@ public class CoachController {
 
     @PostMapping
     public void createCoach(@RequestBody SaveCoachDTO request) {
-        coachService.createCoach(request.getUuid(), request.getFirstName(), request.getLastName(), request.getAge(), request.getTactic());
+        coachService.createCoach(request.getFirstName(), request.getLastName(), request.getAge(), request.getTactic());
     }
 
     @PutMapping("{uuid}")

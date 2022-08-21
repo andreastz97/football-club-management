@@ -11,9 +11,13 @@ import java.util.Set;
 @Table(name = "players")
 public class Player extends Person {
 
+    private Set<Fan> fansOfPLayers = new HashSet<>();
     @JsonIgnore
-    @OneToMany(mappedBy = "player")
-    private Set<Fan> fans = new HashSet<>();
+    @ManyToMany
+    @JoinTable(name = "fans_of_players",
+            joinColumns = @JoinColumn(name = "fan_uuid"),
+            inverseJoinColumns = @JoinColumn(name = "player_uuid")
+    )
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "team_uuid")
@@ -60,7 +64,7 @@ public class Player extends Person {
         this.team = team;
     }
 
-    public Set<Fan> getFans() {
-        return fans;
+    public Set<Fan> getFansOfPLayers() {
+        return fansOfPLayers;
     }
 }

@@ -28,9 +28,8 @@ public class FanService extends PersonService {
     }
 
     @Transactional
-    public void createFan(String uuid , String firstName, String lastName, int age, String favouriteTeam) {
+    public void createFan(String firstName, String lastName, int age, String favouriteTeam) {
         Fan fan = new Fan();
-        fan.setUuid(uuid);
         fan.setFirstName(firstName);
         fan.setLastName(lastName);
         fan.setAge(age);
@@ -38,8 +37,8 @@ public class FanService extends PersonService {
         fanRepository.save(fan);
     }
 
-    public void updateFan(String uuid, String firstName, String lastName, int age, String favouriteTeam) {
-        Fan fan = new Fan(uuid);
+    public void updateFan(String uuid,String firstName, String lastName, int age, String favouriteTeam) {
+        Fan fan = new Fan();
         fan.setFirstName(firstName);
         fan.setLastName(lastName);
         fan.setAge(age);

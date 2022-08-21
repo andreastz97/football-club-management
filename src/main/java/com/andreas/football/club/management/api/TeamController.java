@@ -30,12 +30,12 @@ public class TeamController {
 
     @PostMapping
     public void createTeam(@RequestBody SaveTeamDTO request) {
-        teamService.createTeam(request.getUuid(), request.getName(), request.getHomeStadium(), request.getTrophies());
+        teamService.createTeam(request.getName(), request.getHomeStadium(), request.getTrophies());
     }
 
     @PutMapping
     public void updateTeam(@PathVariable String uuid, @RequestBody SaveTeamDTO request) {
-        teamService.updateTeam(request.getUuid(), request.getName(), request.getHomeStadium(), request.getTrophies());
+        teamService.updateTeam(uuid,request.getName(), request.getHomeStadium(), request.getTrophies());
     }
 
     @DeleteMapping("{/uuid}")

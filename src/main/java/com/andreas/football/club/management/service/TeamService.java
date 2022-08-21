@@ -25,17 +25,16 @@ public class TeamService {
     }
 
     @Transactional
-    public void createTeam(String uuid,String name, String homeStadium, int trophies) {
+    public void createTeam(String name, String homeStadium, int trophies) {
         Team team = new Team();
-        team.setUuid(uuid);
         team.setName(name);
         team.setHomeStadium(homeStadium);
         team.setTrophies(trophies);
         teamRepository.save(team);
     }
     @Transactional
-    public void updateTeam(String uuid, String name, String homeStadium, int trophies){
-        Team team = new Team(uuid);
+    public void updateTeam(String uuid,String name, String homeStadium, int trophies){
+        Team team = new Team();
         team.setName(name);
         team.setHomeStadium(homeStadium);
         team.setTrophies(trophies);

@@ -1,13 +1,23 @@
 package com.andreas.football.club.management.model;
 
+import org.apache.catalina.LifecycleState;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "fans")
 public class Fan extends Person {
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "player_uuid")
-    private Player player;
+
+    @ManyToMany(mappedBy = "fansOfPLayers")
+    @JoinTable(name = "fans_of_players",
+            joinColumns = @JoinColumn(name = "fan_uuid"),
+            inverseJoinColumns = @JoinColumn(name = "player_uuid"))
+
+    Set<Player> favouritePlayers = new HashSet<>();
 
     private String favouriteTeam;
 
@@ -29,5 +39,9 @@ public class Fan extends Person {
 
     public void setFavouriteTeam(String favouriteTeam) {
         this.favouriteTeam = favouriteTeam;
+    }
+
+    public Set<Player> getFavouritePlayers() {
+        return favouritePlayers;
     }
 }

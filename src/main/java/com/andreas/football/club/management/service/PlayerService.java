@@ -30,9 +30,8 @@ public class PlayerService extends PersonService {
     }
 
     @Transactional
-    public void createPlayer(String uuid, String firstName, String lastName, int age, PositionType position, int goals) {
-        Player player = new Player(uuid);
-        player.setUuid(uuid);
+    public void createPlayer(String firstName, String lastName, int age, PositionType position, int goals) {
+        Player player = new Player();
         player.setFirstName(firstName);
         player.setLastName(lastName);
         player.setAge(age);
@@ -42,8 +41,8 @@ public class PlayerService extends PersonService {
     }
 
     @Transactional
-    public void updatePlayer(String uuid, String firstName, String lastName, int age, PositionType position, int goals) {
-        Player player = new Player(uuid);
+    public void updatePlayer(String uuid ,String firstName, String lastName, int age, PositionType position, int goals) {
+        Player player = new Player();
         player.setFirstName(firstName);
         player.setLastName(lastName);
         player.setAge(age);

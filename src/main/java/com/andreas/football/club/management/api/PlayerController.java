@@ -29,7 +29,7 @@ public class PlayerController {
 
     @PostMapping
     public void createPlayer(@RequestBody SavePlayerDTO request) {
-        playerService.createPlayer(request.getUuid(), request.getFirstName(), request.getLastName(), request.getAge(), request.getPosition(), request.getGoals());
+        playerService.createPlayer(request.getFirstName(), request.getLastName(), request.getAge(), request.getPosition(), request.getGoals());
     }
 
     @PutMapping
