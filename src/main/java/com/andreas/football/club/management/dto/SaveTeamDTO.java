@@ -5,6 +5,12 @@ public class SaveTeamDTO {
     private String homeStadium;
     private int trophies;
 
+    public SaveTeamDTO(String name, String homeStadium, int trophies) {
+        this.name = name;
+        this.homeStadium = homeStadium;
+        this.trophies = trophies;
+    }
+
     public String getName() {
         return name;
     }

@@ -5,6 +5,15 @@ public class SavePersonDTO {
     private String lastName;
     private int age;
 
+    public SavePersonDTO(String firstName, String lastName, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    public SavePersonDTO() {
+    }
+
     public String getFirstName() {
         return firstName;
     }

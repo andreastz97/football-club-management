@@ -5,10 +5,12 @@ import com.andreas.football.club.management.model.Player;
 import com.andreas.football.club.management.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-
+@RequestMapping("players")
+@RestController
 public class PlayerController {
     private final PlayerService playerService;
 
@@ -18,7 +20,7 @@ public class PlayerController {
     }
 
     @GetMapping
-    public List<Player> getPlayers() {
+    public List<SavePlayerDTO> getPlayers() {
         return playerService.getPlayers();
     }
 

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CoachService extends PersonService {
@@ -32,10 +33,12 @@ public class CoachService extends PersonService {
     @Transactional
     public void createCoach(String firstName, String lastName, int age, TacticType tactic) {
         Coach coach = new Coach();
+        coach.setUuid(UUID.randomUUID().toString().replace("-","").substring(0,8));
         coach.setFirstName(firstName);
         coach.setLastName(lastName);
         coach.setAge(age);
         coach.setTactic(tactic);
+        coachRepository.save(coach);
     }
 
     @Transactional

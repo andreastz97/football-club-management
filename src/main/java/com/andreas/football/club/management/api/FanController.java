@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping("fans")
+@RestController
 public class FanController {
     private final FanService fanService;
 

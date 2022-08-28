@@ -1,25 +1,17 @@
 package com.andreas.football.club.management.model;
 
-import org.apache.catalina.LifecycleState;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "fans")
 public class Fan extends Person {
+    @Column(name = "favourite_team")
+    private String favouriteTeam;
 
     @ManyToMany(mappedBy = "fansOfPLayers")
-    @JoinTable(name = "fans_of_players",
-            joinColumns = @JoinColumn(name = "fan_uuid"),
-            inverseJoinColumns = @JoinColumn(name = "player_uuid"))
-
-    Set<Player> favouritePlayers = new HashSet<>();
-
-    private String favouriteTeam;
+    private Set<Player> favouritePlayers = new HashSet<>();
 
     public Fan() {
     }

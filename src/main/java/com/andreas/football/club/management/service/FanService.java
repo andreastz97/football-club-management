@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class FanService extends PersonService {
@@ -30,6 +31,7 @@ public class FanService extends PersonService {
     @Transactional
     public void createFan(String firstName, String lastName, int age, String favouriteTeam) {
         Fan fan = new Fan();
+        fan.setUuid(UUID.randomUUID().toString().replace("-","").substring(0,8));
         fan.setFirstName(firstName);
         fan.setLastName(lastName);
         fan.setAge(age);
@@ -38,7 +40,7 @@ public class FanService extends PersonService {
     }
 
     public void updateFan(String uuid,String firstName, String lastName, int age, String favouriteTeam) {
-        Fan fan = new Fan();
+        Fan fan = new Fan(uuid);
         fan.setFirstName(firstName);
         fan.setLastName(lastName);
         fan.setAge(age);

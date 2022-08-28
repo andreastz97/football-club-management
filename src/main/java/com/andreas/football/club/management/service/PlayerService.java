@@ -9,11 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+
 
 @Service
 public class PlayerService extends PersonService {
     @Autowired
-    PlayerRepository playerRepository;
+    private PlayerRepository playerRepository;
 
     @Transactional(readOnly = true)
     public List<Player> getPlayers() {
@@ -32,6 +34,7 @@ public class PlayerService extends PersonService {
     @Transactional
     public void createPlayer(String firstName, String lastName, int age, PositionType position, int goals) {
         Player player = new Player();
+        player.setUuid(UUID.randomUUID().toString().replace("-","").substring(0,8));
         player.setFirstName(firstName);
         player.setLastName(lastName);
         player.setAge(age);
@@ -42,7 +45,7 @@ public class PlayerService extends PersonService {
 
     @Transactional
     public void updatePlayer(String uuid ,String firstName, String lastName, int age, PositionType position, int goals) {
-        Player player = new Player();
+        Player player = new Player(uuid);
         player.setFirstName(firstName);
         player.setLastName(lastName);
         player.setAge(age);

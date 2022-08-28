@@ -4,6 +4,7 @@ import com.andreas.football.club.management.dto.SaveCoachDTO;
 import com.andreas.football.club.management.model.Coach;
 import com.andreas.football.club.management.service.CoachService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,8 +39,9 @@ public class CoachController {
         coachService.updateCoach(uuid, request.getFirstName(), request.getLastName(), request.getAge(), request.getTactic());
     }
 
-    @DeleteMapping
-    public void deleteCoach(@PathVariable String uuid) {
-        coachService.deleteCoach(uuid);
+    @DeleteMapping(path = "/{uuid}")
+    public ResponseEntity<Void> deleteCoach(@PathVariable("uuid") String uuid){
+        this.coachService.deleteCoach(uuid);
+        return ResponseEntity.noContent().build();
     }
 }

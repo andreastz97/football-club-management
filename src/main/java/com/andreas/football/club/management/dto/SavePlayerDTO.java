@@ -6,6 +6,13 @@ public class SavePlayerDTO extends SavePersonDTO {
     private PositionType position;
     private int goals;
 
+    public SavePlayerDTO(String firstName, String lastName, int age, PositionType position, int goals) {
+        super(firstName, lastName, age);
+        this.position = position;
+        this.goals = goals;
+    }
+
+
     public PositionType getPosition() {
         return position;
     }

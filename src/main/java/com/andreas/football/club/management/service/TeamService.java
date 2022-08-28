@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class TeamService {
     @Autowired
@@ -27,6 +29,7 @@ public class TeamService {
     @Transactional
     public void createTeam(String name, String homeStadium, int trophies) {
         Team team = new Team();
+        team.setUuid(UUID.randomUUID().toString().replace("-","").substring(0,8));
         team.setName(name);
         team.setHomeStadium(homeStadium);
         team.setTrophies(trophies);
@@ -34,7 +37,7 @@ public class TeamService {
     }
     @Transactional
     public void updateTeam(String uuid,String name, String homeStadium, int trophies){
-        Team team = new Team();
+        Team team = new Team(uuid);
         team.setName(name);
         team.setHomeStadium(homeStadium);
         team.setTrophies(trophies);
