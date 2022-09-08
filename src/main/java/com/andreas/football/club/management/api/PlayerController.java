@@ -20,7 +20,7 @@ public class PlayerController {
     }
 
     @GetMapping
-    public List<SavePlayerDTO> getPlayers() {
+    public List<Player> getPlayers() {
         return playerService.getPlayers();
     }
 

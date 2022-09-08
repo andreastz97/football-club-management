@@ -1,5 +1,6 @@
 package com.andreas.football.club.management.api;
 
+import com.andreas.football.club.management.dto.GetTeamDTO;
 import com.andreas.football.club.management.dto.SaveTeamDTO;
 import com.andreas.football.club.management.model.Team;
 import com.andreas.football.club.management.service.TeamService;
@@ -19,12 +20,16 @@ public class TeamController {
     }
 
     @GetMapping
-    public List<Team> getTeams() {
-        return teamService.getTeams();
+    //public List<Team> getTeams() {
+     //   return teamService.getTeams();
+    //}
+    public List<GetTeamDTO> getTeamDTOS(){
+        return teamService.getTeamDTOS();
     }
 
+
     @GetMapping("{uuid}")
-    public Team getTeam(@PathVariable String uuid) {
+    public GetTeamDTO getTeam(@PathVariable String uuid) {
         return teamService.getTeam(uuid);
     }
 
