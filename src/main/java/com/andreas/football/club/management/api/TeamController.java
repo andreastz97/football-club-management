@@ -20,9 +20,6 @@ public class TeamController {
     }
 
     @GetMapping
-    //public List<Team> getTeams() {
-     //   return teamService.getTeams();
-    //}
     public List<GetTeamDTO> getTeamDTOS(){
         return teamService.getTeamDTOS();
     }
