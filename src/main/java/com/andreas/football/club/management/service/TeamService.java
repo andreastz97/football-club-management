@@ -59,14 +59,9 @@ public class TeamService {
             throw new RuntimeException("Empty coach uuid");
         }
         team.setCoach(optionalCoach.get());
-        Optional<Player> optionalPlayer;
-        List<String> uuidStrings = new ArrayList<>();
-        for (String playerUuid : playersUuid) {
-            optionalPlayer = playerRepository.findById(playerUuid);
-            uuidStrings.add(optionalPlayer.get().getUuid());
-            team.setTeamPlayers(optionalPlayer.get().getTeam().getTeamPlayers());
 
-        }
+        List<Player> playersList = playerRepository.findAllById(playersUuid);
+        team.setTeamPlayers(playersList);
         teamRepository.save(team);
     }
 
