@@ -23,7 +23,7 @@ public class CoachService extends PersonService {
 
     @Transactional(readOnly = true)
     public Coach getCoaches(String uuid) {
-        Optional<Coach> optionalCoach = coachRepository.findById(Integer.valueOf(uuid));
+        Optional<Coach> optionalCoach = coachRepository.findById(uuid);
         if (optionalCoach.isEmpty()) {
             return null;
         }
@@ -53,7 +53,7 @@ public class CoachService extends PersonService {
 
     @Transactional
     public void deleteCoach(String uuid) {
-        coachRepository.deleteById(Integer.valueOf(uuid));
+        coachRepository.deleteById(uuid);
     }
 
 }

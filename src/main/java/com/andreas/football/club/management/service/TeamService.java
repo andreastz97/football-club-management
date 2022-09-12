@@ -1,56 +1,72 @@
 package com.andreas.football.club.management.service;
 
+import com.andreas.football.club.management.mapper.TeamMapper;
 import com.andreas.football.club.management.dto.GetTeamDTO;
+import com.andreas.football.club.management.model.Coach;
+import com.andreas.football.club.management.model.Player;
 import com.andreas.football.club.management.model.Team;
+import com.andreas.football.club.management.repository.CoachRepository;
+import com.andreas.football.club.management.repository.PlayerRepository;
 import com.andreas.football.club.management.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+
+import java.util.*;
 
 @Service
 public class TeamService {
     @Autowired
     private TeamRepository teamRepository;
+    @Autowired
+    private CoachRepository coachRepository;
+    @Autowired
+    private PlayerRepository playerRepository;
+
+    private TeamMapper teamMapper = new TeamMapper();
 
     @Transactional(readOnly = true)
-    public List<GetTeamDTO> getTeamDTOS() {
+    public List<GetTeamDTO> getTeams() {
+
         List<Team> teams = teamRepository.findAll();
 
-        List<GetTeamDTO> teamsDTO = new ArrayList<>();
-        for (Team team : teams) {
-            GetTeamDTO getTeamDTO = new GetTeamDTO(team.getUuid(), team.getName(), team.getHomeStadium(), team.getTrophies());
-
-            teamsDTO.add(getTeamDTO);
-        }
-        return teamsDTO;
+        return teamMapper.mapTeamsList(teams);
     }
-
 
     @Transactional(readOnly = true)
     public GetTeamDTO getTeam(String uuid) {
         Optional<Team> optionalTeam = teamRepository.findById(uuid);
+
         if (optionalTeam.isEmpty()) {
             return null;
         }
-
-        Team currentTeam = optionalTeam.get();
-        GetTeamDTO getTeamDTO = new GetTeamDTO(currentTeam.getUuid(), currentTeam.getName(),
-                currentTeam.getHomeStadium(), currentTeam.getTrophies());
-
-        return getTeamDTO;
+        return teamMapper.map(optionalTeam.get());
     }
 
+
     @Transactional
-    public void createTeam(String name, String homeStadium, int trophies) {
+    public void createTeam(String name, String homeStadium, int trophies, String coachUuid, List<String> playersUuid) {
+
+        Optional<Coach> optionalCoach = coachRepository.findById(coachUuid);
+
         Team team = new Team();
         team.setUuid(UUID.randomUUID().toString().replace("-", "").substring(0, 8));
         team.setName(name);
         team.setHomeStadium(homeStadium);
         team.setTrophies(trophies);
+
+        if (optionalCoach.isEmpty()) {
+            throw new RuntimeException("Empty coach uuid");
+        }
+        team.setCoach(optionalCoach.get());
+        Optional<Player> optionalPlayer;
+        List<String> uuidStrings = new ArrayList<>();
+        for (String playerUuid : playersUuid) {
+            optionalPlayer = playerRepository.findById(playerUuid);
+            uuidStrings.add(optionalPlayer.get().getUuid());
+            team.setTeamPlayers(optionalPlayer.get().getTeam().getTeamPlayers());
+
+        }
         teamRepository.save(team);
     }
 

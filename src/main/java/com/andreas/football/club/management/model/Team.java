@@ -2,17 +2,18 @@ package com.andreas.football.club.management.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "teams")
 public class Team {
     @JsonIgnore
     @OneToMany(mappedBy = "team")
-    private Set<Player> teamPlayers = new HashSet<>();
+    private List<Player> teamPlayers = new ArrayList<>();
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "team")
+    @OneToOne
+    @JoinColumn(name = "coach_uuid", referencedColumnName = "uuid")
     private Coach coach;
 
     @Id
@@ -70,11 +71,11 @@ public class Team {
         this.trophies = trophies;
     }
 
-    public Set<Player> getTeamPlayers() {
+    public List<Player> getTeamPlayers() {
         return teamPlayers;
     }
 
-    public void setTeamPlayers(Set<Player> teamPlayers) {
+    public void setTeamPlayers(List<Player> teamPlayers) {
         this.teamPlayers = teamPlayers;
     }
 

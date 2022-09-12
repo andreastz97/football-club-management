@@ -5,9 +5,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "coaches")
 public class Coach extends Person {
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "coaches_team")
+
+    @OneToOne
     private Team team;
+
 
     @Enumerated(EnumType.STRING)
     private TacticType tactic;

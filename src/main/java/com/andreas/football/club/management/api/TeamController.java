@@ -2,7 +2,6 @@ package com.andreas.football.club.management.api;
 
 import com.andreas.football.club.management.dto.GetTeamDTO;
 import com.andreas.football.club.management.dto.SaveTeamDTO;
-import com.andreas.football.club.management.model.Team;
 import com.andreas.football.club.management.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +11,7 @@ import java.util.List;
 @RequestMapping("teams")
 @RestController
 public class TeamController {
-    private final TeamService teamService;
+    private TeamService teamService;
 
     @Autowired
     public TeamController(TeamService teamService) {
@@ -21,7 +20,7 @@ public class TeamController {
 
     @GetMapping
     public List<GetTeamDTO> getTeamDTOS(){
-        return teamService.getTeamDTOS();
+        return teamService.getTeams();
     }
 
 
@@ -31,9 +30,10 @@ public class TeamController {
     }
 
     @PostMapping
-    public void createTeam(@RequestBody SaveTeamDTO request) {
-        teamService.createTeam(request.getName(), request.getHomeStadium(), request.getTrophies());
+    public void createTeam(@RequestBody SaveTeamDTO request) { //List String of id }
+        teamService.createTeam(request.getName(), request.getHomeStadium(), request.getTrophies(),request.getCoachUuid(),request.getPlayersUuid());
     }
+
 
     @PutMapping
     public void updateTeam(@PathVariable String uuid, @RequestBody SaveTeamDTO request) {

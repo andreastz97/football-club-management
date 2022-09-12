@@ -1,5 +1,8 @@
 package com.andreas.football.club.management.service;
 
+import com.andreas.football.club.management.dto.GetPlayerDTO;
+import com.andreas.football.club.management.dto.SavePlayerDTO;
+import com.andreas.football.club.management.mapper.PlayerMapper;
 import com.andreas.football.club.management.model.Player;
 import com.andreas.football.club.management.model.PositionType;
 import com.andreas.football.club.management.repository.PlayerRepository;
@@ -11,11 +14,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-
 @Service
 public class PlayerService extends PersonService {
+
     @Autowired
     private PlayerRepository playerRepository;
+
+    private PlayerMapper playerMapper = new PlayerMapper();
 
     @Transactional(readOnly = true)
     public List<Player> getPlayers() {
@@ -24,7 +29,7 @@ public class PlayerService extends PersonService {
 
     @Transactional(readOnly = true)
     public Player getPlayer(String uuid) {
-        Optional<Player> playerOptional = playerRepository.findById(Integer.valueOf(uuid));
+        Optional<Player> playerOptional = playerRepository.findById(uuid);
         if (playerOptional.isEmpty()) {
             return null;
         }
@@ -34,14 +39,14 @@ public class PlayerService extends PersonService {
     @Transactional
     public void createPlayer(String firstName, String lastName, int age, PositionType position, int goals) {
         Player player = new Player();
-        player.setUuid(UUID.randomUUID().toString().replace("-","").substring(0,8));
-        player.setFirstName(firstName);
-        player.setLastName(lastName);
-        player.setAge(age);
-        player.setPosition(position);
-        player.setGoals(goals);
-        playerRepository.save(player);
-    }
+                player.setUuid(UUID.randomUUID().toString().replace("-", "").substring(0, 8));
+                player.setFirstName(firstName);
+                player.setLastName(lastName);
+                player.setAge(age);
+                player.setPosition(position);
+                player.setGoals(goals);
+                playerRepository.save(player);
+        }
 
     @Transactional
     public void updatePlayer(String uuid ,String firstName, String lastName, int age, PositionType position, int goals) {
@@ -54,6 +59,6 @@ public class PlayerService extends PersonService {
     }
     @Transactional
     public void deletePlayer(String uuid){
-        playerRepository.deleteById(Integer.valueOf(uuid));
+        playerRepository.deleteById(uuid);
     }
 }

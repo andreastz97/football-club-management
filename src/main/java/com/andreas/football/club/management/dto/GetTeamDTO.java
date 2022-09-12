@@ -5,12 +5,14 @@ public class GetTeamDTO {
     private String name;
     private String homeStadium;
     private int trophies;
+    private GetCoachDTO coachDTO;
 
-    public GetTeamDTO(String uuid, String name, String homeStadium, int trophies) {
+    public GetTeamDTO(String uuid, String name, String homeStadium, int trophies, GetCoachDTO coachDTO) {
         this.uuid = uuid;
         this.name = name;
         this.homeStadium = homeStadium;
         this.trophies = trophies;
+        this.coachDTO = coachDTO;
     }
 
     public GetTeamDTO() {
@@ -46,5 +48,15 @@ public class GetTeamDTO {
 
     public void setTrophies(int trophies) {
         this.trophies = trophies;
+    }
+
+
+
+    public GetCoachDTO getCoachDTO() {
+        return coachDTO;
+    }
+
+    public void setCoachDTO(GetCoachDTO coachDTO) {
+        this.coachDTO = coachDTO;
     }
 }

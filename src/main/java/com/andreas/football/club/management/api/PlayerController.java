@@ -1,5 +1,6 @@
 package com.andreas.football.club.management.api;
 
+import com.andreas.football.club.management.dto.GetPlayerDTO;
 import com.andreas.football.club.management.dto.SavePlayerDTO;
 import com.andreas.football.club.management.model.Player;
 import com.andreas.football.club.management.service.PlayerService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("players")
