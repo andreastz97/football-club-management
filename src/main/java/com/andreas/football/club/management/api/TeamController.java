@@ -19,10 +19,9 @@ public class TeamController {
     }
 
     @GetMapping
-    public List<GetTeamDTO> getTeamDTOS(){
+    public List<GetTeamDTO> getTeamDTOS() {
         return teamService.getTeams();
     }
-
 
     @GetMapping("{uuid}")
     public GetTeamDTO getTeam(@PathVariable String uuid) {
@@ -30,10 +29,9 @@ public class TeamController {
     }
 
     @PostMapping
-    public void createTeam(@RequestBody SaveTeamDTO request) { //List String of id }
-        teamService.createTeam(request.getName(), request.getHomeStadium(), request.getTrophies(),request.getCoachUuid(),request.getPlayersUuid());
+    public void createTeam(@RequestBody SaveTeamDTO request) {
+        teamService.createTeam(request.getName(), request.getHomeStadium(), request.getTrophies(), request.getCoachUuid(), request.getPlayersUuid());
     }
-
 
     @PutMapping
     public void updateTeam(@PathVariable String uuid, @RequestBody SaveTeamDTO request) {
@@ -44,6 +42,4 @@ public class TeamController {
     public void deleteTeam(@PathVariable String uuid) {
         teamService.deleteTeam(uuid);
     }
-
-
 }

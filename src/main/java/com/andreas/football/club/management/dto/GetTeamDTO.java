@@ -1,18 +1,24 @@
 package com.andreas.football.club.management.dto;
 
+import com.andreas.football.club.management.model.Player;
+
+import java.util.List;
+
 public class GetTeamDTO {
     private String uuid;
     private String name;
     private String homeStadium;
     private int trophies;
     private GetCoachDTO coachDTO;
+    private List<Player> playersOfTeam;
 
-    public GetTeamDTO(String uuid, String name, String homeStadium, int trophies, GetCoachDTO coachDTO) {
+    public GetTeamDTO(String uuid, String name, String homeStadium, int trophies, GetCoachDTO coachDTO, List playersOfTeam) {
         this.uuid = uuid;
         this.name = name;
         this.homeStadium = homeStadium;
         this.trophies = trophies;
         this.coachDTO = coachDTO;
+        this.playersOfTeam = playersOfTeam;
     }
 
     public GetTeamDTO() {
@@ -50,8 +56,6 @@ public class GetTeamDTO {
         this.trophies = trophies;
     }
 
-
-
     public GetCoachDTO getCoachDTO() {
         return coachDTO;
     }
@@ -59,4 +63,13 @@ public class GetTeamDTO {
     public void setCoachDTO(GetCoachDTO coachDTO) {
         this.coachDTO = coachDTO;
     }
+
+    public List<Player> getPlayersOfTeam() {
+        return playersOfTeam;
+    }
+
+    public void setPlayersOfTeam(List<Player> playersOfTeam) {
+        this.playersOfTeam = playersOfTeam;
+    }
+
 }

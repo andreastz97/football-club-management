@@ -12,7 +12,6 @@ public class SavePlayerDTO extends SavePersonDTO {
         this.goals = goals;
     }
 
-
     public PositionType getPosition() {
         return position;
     }

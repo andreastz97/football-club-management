@@ -1,7 +1,5 @@
 package com.andreas.football.club.management.service;
 
-import com.andreas.football.club.management.dto.GetPlayerDTO;
-import com.andreas.football.club.management.dto.SavePlayerDTO;
 import com.andreas.football.club.management.mapper.PlayerMapper;
 import com.andreas.football.club.management.model.Player;
 import com.andreas.football.club.management.model.PositionType;
@@ -57,6 +55,7 @@ public class PlayerService extends PersonService {
         player.setPosition(position);
         player.setGoals(goals);
     }
+
     @Transactional
     public void deletePlayer(String uuid){
         playerRepository.deleteById(uuid);

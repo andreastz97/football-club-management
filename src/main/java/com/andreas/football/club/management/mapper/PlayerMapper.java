@@ -9,8 +9,9 @@ import java.util.List;
 public class PlayerMapper {
     public GetPlayerDTO map(Player player) {
         return new GetPlayerDTO(player.getUuid(), player.getFirstName(),
-                player.getLastName(), player.getAge(),player.getPosition(),player.getGoals());
+                player.getLastName(), player.getAge(), player.getPosition(), player.getGoals());
     }
+
     public List<GetPlayerDTO> mapPLayerList(List<Player> playerList) {
         List<GetPlayerDTO> playerDTOS = new ArrayList<>();
         for (Player player : playerList) {
@@ -18,5 +19,5 @@ public class PlayerMapper {
         }
         return playerDTOS;
     }
-    }
+}
 

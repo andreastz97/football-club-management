@@ -30,7 +30,7 @@ public class TeamService {
 
         List<Team> teams = teamRepository.findAll();
 
-        return teamMapper.mapTeamsList(teams);
+        return teamMapper.mapTeamsListDTO(teams);
     }
 
     @Transactional(readOnly = true)
@@ -40,14 +40,11 @@ public class TeamService {
         if (optionalTeam.isEmpty()) {
             return null;
         }
-        return teamMapper.map(optionalTeam.get());
+        return teamMapper.mapTeamDTO(optionalTeam.get());
     }
-
 
     @Transactional
     public void createTeam(String name, String homeStadium, int trophies, String coachUuid, List<String> playersUuid) {
-
-        Optional<Coach> optionalCoach = coachRepository.findById(coachUuid);
 
         Team team = new Team();
         team.setUuid(UUID.randomUUID().toString().replace("-", "").substring(0, 8));
@@ -55,14 +52,24 @@ public class TeamService {
         team.setHomeStadium(homeStadium);
         team.setTrophies(trophies);
 
+        initializeCoachToTeam(team, coachUuid);
+        initializePlayerToTeam(team, playersUuid);
+
+        teamRepository.save(team);
+    }
+
+    private void initializePlayerToTeam(Team team, List<String> playersUuid) {
+        List<Player> playersList = playerRepository.findAllById(playersUuid);
+        team.setTeamPlayers(playersList);
+
+    }
+
+    private void initializeCoachToTeam(Team team, String coachUuid) {
+        Optional<Coach> optionalCoach = coachRepository.findById(coachUuid);
         if (optionalCoach.isEmpty()) {
             throw new RuntimeException("Empty coach uuid");
         }
         team.setCoach(optionalCoach.get());
-
-        List<Player> playersList = playerRepository.findAllById(playersUuid);
-        team.setTeamPlayers(playersList);
-        teamRepository.save(team);
     }
 
     @Transactional

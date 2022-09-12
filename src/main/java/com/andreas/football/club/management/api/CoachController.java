@@ -40,7 +40,7 @@ public class CoachController {
     }
 
     @DeleteMapping(path = "/{uuid}")
-    public ResponseEntity<Void> deleteCoach(@PathVariable("uuid") String uuid){
+    public ResponseEntity<Void> deleteCoach(@PathVariable("uuid") String uuid) {
         this.coachService.deleteCoach(uuid);
         return ResponseEntity.noContent().build();
     }

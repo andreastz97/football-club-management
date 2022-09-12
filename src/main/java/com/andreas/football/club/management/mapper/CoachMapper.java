@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CoachMapper {
-    public GetCoachDTO map(Coach coach) {
+    public GetCoachDTO mapGetCoach(Coach coach) {
         return new GetCoachDTO(coach.getUuid(), coach.getFirstName(),
                 coach.getLastName(), coach.getAge(), coach.getTactic());
     }
 
-    public List<GetCoachDTO> mapCoachesDTO(List<Coach> coachList) {
+    public List<GetCoachDTO> mapCoachesListDTO(List<Coach> coachList) {
         List<GetCoachDTO> coachDTO = new ArrayList<>();
         for (Coach coach : coachList) {
-            coachDTO.add(map(coach));
+            coachDTO.add(mapGetCoach(coach));
         }
         return coachDTO;
     }

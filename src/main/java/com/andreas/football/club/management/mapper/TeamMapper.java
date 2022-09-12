@@ -2,7 +2,6 @@ package com.andreas.football.club.management.mapper;
 
 import com.andreas.football.club.management.dto.GetCoachDTO;
 import com.andreas.football.club.management.dto.GetTeamDTO;
-import com.andreas.football.club.management.model.Coach;
 import com.andreas.football.club.management.model.Team;
 
 import java.util.ArrayList;
@@ -10,23 +9,22 @@ import java.util.List;
 
 public class TeamMapper {
 
-    public GetTeamDTO map(Team team) {
+    public GetTeamDTO mapTeamDTO(Team team) {
+
+        CoachMapper coachMapper = new CoachMapper();
+        GetCoachDTO getCoachDTO = coachMapper.mapGetCoach(team.getCoach());
+
         return new GetTeamDTO(team.getUuid(), team.getName(),
-                team.getHomeStadium(), team.getTrophies(), mapGetCoachDTO(team.getCoach()));
+                team.getHomeStadium(), team.getTrophies(), getCoachDTO, team.getTeamPlayers());
     }
 
-    public List<GetTeamDTO> mapTeamsList(List<Team> teamList) {
+    public List<GetTeamDTO> mapTeamsListDTO(List<Team> teamList) {
 
         List<GetTeamDTO> teamsDTO = new ArrayList<>();
         for (Team team : teamList) {
-            teamsDTO.add(map(team));
+            teamsDTO.add(mapTeamDTO(team));
         }
         return teamsDTO;
     }
-    public GetCoachDTO mapGetCoachDTO(Coach coach) {
-        return new GetCoachDTO(coach.getUuid(), coach.getFirstName(),
-                coach.getLastName(), coach.getAge(), coach.getTactic());
-    }
-
 }
 

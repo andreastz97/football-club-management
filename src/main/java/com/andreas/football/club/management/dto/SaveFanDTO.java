@@ -8,7 +8,6 @@ public class SaveFanDTO extends SavePersonDTO {
         this.favouriteTeam = favouriteTeam;
     }
 
-
     public SaveFanDTO(String favouriteTeam) {
         this.favouriteTeam = favouriteTeam;
     }
