@@ -33,9 +33,9 @@ public class TeamController {
         teamService.createTeam(request.getName(), request.getHomeStadium(), request.getTrophies(), request.getCoachUuid(), request.getPlayersUuid());
     }
 
-    @PutMapping
+    @PutMapping("{uuid}")
     public void updateTeam(@PathVariable String uuid, @RequestBody SaveTeamDTO request) {
-        teamService.updateTeam(uuid, request.getName(), request.getHomeStadium(), request.getTrophies());
+        teamService.updateTeam(uuid, request.getName(), request.getHomeStadium(), request.getTrophies(), request.getCoachUuid(),request.getPlayersUuid());
     }
 
     @DeleteMapping("{uuid}")

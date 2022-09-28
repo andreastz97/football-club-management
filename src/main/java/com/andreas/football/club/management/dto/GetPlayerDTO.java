@@ -2,7 +2,7 @@ package com.andreas.football.club.management.dto;
 
 import com.andreas.football.club.management.model.PositionType;
 
-public class GetPlayerDTO extends GetPersonDTO{
+public class GetPlayerDTO extends GetPersonDTO {
     private PositionType position;
     private int goals;
 

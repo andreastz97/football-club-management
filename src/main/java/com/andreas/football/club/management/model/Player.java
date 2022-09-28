@@ -19,6 +19,7 @@ public class Player extends Person {
     )
     private Set<Fan> fansOfPLayers = new HashSet<>();
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "team_uuid")
     private Team team;
@@ -33,7 +34,6 @@ public class Player extends Person {
 
     public Player(String uuid) {
     }
-
 
     public Player(String uuid, String firstName, String lastName, int age, PositionType position, int goals) {
         super(uuid, firstName, lastName, age);

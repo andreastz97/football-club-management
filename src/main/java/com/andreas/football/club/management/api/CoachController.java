@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("coaches")
 @RestController
 public class CoachController {
+
     private final CoachService coachService;
 
     @Autowired
@@ -36,7 +37,7 @@ public class CoachController {
 
     @PutMapping("{uuid}")
     public void updateCoach(@PathVariable String uuid, @RequestBody SaveCoachDTO request) {
-        coachService.updateCoach(uuid, request.getFirstName(), request.getLastName(), request.getAge(), request.getTactic());
+        coachService.updateCoach(uuid, request.getFirstName(), request.getLastName(), request.getAge(), request.getTactic(),request.getTeamUuid());
     }
 
     @DeleteMapping(path = "/{uuid}")

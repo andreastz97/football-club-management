@@ -1,5 +1,7 @@
 package com.andreas.football.club.management.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +12,7 @@ public class Fan extends Person {
     @Column(name = "favourite_team")
     private String favouriteTeam;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "fansOfPLayers")
     private Set<Player> favouritePlayers = new HashSet<>();
 

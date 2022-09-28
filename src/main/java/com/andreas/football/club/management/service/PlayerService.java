@@ -34,6 +34,8 @@ public class PlayerService extends PersonService {
         return playerOptional.get();
     }
 
+    //oloi oi mappers na ginoun spring bins , component annotation , updateTeam kai ton coach,players,
+
     @Transactional
     public void createPlayer(String firstName, String lastName, int age, PositionType position, int goals) {
         Player player = new Player();

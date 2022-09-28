@@ -39,7 +39,7 @@ public class PlayerController {
         playerService.updatePlayer(uuid, request.getFirstName(), request.getLastName(), request.getAge(), request.getPosition(), request.getGoals());
     }
 
-    @DeleteMapping
+    @DeleteMapping("{uuid}")
     public void deletePlayer(@PathVariable String uuid) {
         playerService.deletePlayer(uuid);
     }

@@ -1,7 +1,5 @@
 package com.andreas.football.club.management.dto;
 
-import com.andreas.football.club.management.model.Player;
-
 import java.util.List;
 
 public class GetTeamDTO {
@@ -9,16 +7,16 @@ public class GetTeamDTO {
     private String name;
     private String homeStadium;
     private int trophies;
-    private GetCoachDTO coachDTO;
-    private List<Player> playersOfTeam;
+    private GetCoachDTO coach;
+    private List<GetPlayerDTO> players;
 
-    public GetTeamDTO(String uuid, String name, String homeStadium, int trophies, GetCoachDTO coachDTO, List playersOfTeam) {
+    public GetTeamDTO(String uuid, String name, String homeStadium, int trophies, GetCoachDTO coach, List<GetPlayerDTO> players) {
         this.uuid = uuid;
         this.name = name;
         this.homeStadium = homeStadium;
         this.trophies = trophies;
-        this.coachDTO = coachDTO;
-        this.playersOfTeam = playersOfTeam;
+        this.coach = coach;
+        this.players = players;
     }
 
     public GetTeamDTO() {
@@ -56,20 +54,19 @@ public class GetTeamDTO {
         this.trophies = trophies;
     }
 
-    public GetCoachDTO getCoachDTO() {
-        return coachDTO;
+    public GetCoachDTO getCoach() {
+        return coach;
     }
 
-    public void setCoachDTO(GetCoachDTO coachDTO) {
-        this.coachDTO = coachDTO;
+    public void setCoach(GetCoachDTO coach) {
+        this.coach = coach;
     }
 
-    public List<Player> getPlayersOfTeam() {
-        return playersOfTeam;
+    public List<GetPlayerDTO> getPlayers() {
+        return players;
     }
 
-    public void setPlayersOfTeam(List<Player> playersOfTeam) {
-        this.playersOfTeam = playersOfTeam;
+    public void setPlayers(List<GetPlayerDTO> players) {
+        this.players = players;
     }
-
 }

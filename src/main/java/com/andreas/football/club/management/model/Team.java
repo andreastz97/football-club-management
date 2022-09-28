@@ -1,16 +1,16 @@
 package com.andreas.football.club.management.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "teams")
 public class Team {
     @JsonIgnore
-    @OneToMany(mappedBy = "team")
-    private List<Player> teamPlayers = new ArrayList<>();
+    @OneToMany(mappedBy = "team",  cascade = CascadeType.ALL)
+    private List<Player> teamPlayers;
 
     @OneToOne
     @JoinColumn(name = "coach_uuid", referencedColumnName = "uuid")
@@ -30,13 +30,7 @@ public class Team {
     }
 
     public Team(String uuid) {
-    }
-
-    public Team(String uuid, String name, String homeStadium, int trophies) {
         this.uuid = uuid;
-        this.name = name;
-        this.homeStadium = homeStadium;
-        this.trophies = trophies;
     }
 
     public String getUuid() {
@@ -84,7 +78,7 @@ public class Team {
     }
 
     public void setCoach(Coach coach) {
-        this.coach = coach;
+            this.coach = coach;
     }
 
 }
