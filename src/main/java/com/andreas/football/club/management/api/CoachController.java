@@ -37,7 +37,7 @@ public class CoachController {
 
     @PutMapping("{uuid}")
     public void updateCoach(@PathVariable String uuid, @RequestBody SaveCoachDTO request) {
-        coachService.updateCoach(uuid, request.getFirstName(), request.getLastName(), request.getAge(), request.getTactic(),request.getTeamUuid());
+        coachService.updateCoach(uuid, request.getFirstName(), request.getLastName(), request.getAge(), request.getTactic(), request.getTeamUuid());
     }
 
     @DeleteMapping(path = "/{uuid}")

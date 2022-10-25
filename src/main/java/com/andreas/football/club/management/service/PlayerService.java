@@ -18,7 +18,9 @@ public class PlayerService extends PersonService {
     @Autowired
     private PlayerRepository playerRepository;
 
-    private PlayerMapper playerMapper = new PlayerMapper();
+    //todo autowired
+    @Autowired
+    private PlayerMapper playerMapper;
 
     @Transactional(readOnly = true)
     public List<Player> getPlayers() {
@@ -34,22 +36,20 @@ public class PlayerService extends PersonService {
         return playerOptional.get();
     }
 
-    //oloi oi mappers na ginoun spring bins , component annotation , updateTeam kai ton coach,players,
-
     @Transactional
     public void createPlayer(String firstName, String lastName, int age, PositionType position, int goals) {
         Player player = new Player();
-                player.setUuid(UUID.randomUUID().toString().replace("-", "").substring(0, 8));
-                player.setFirstName(firstName);
-                player.setLastName(lastName);
-                player.setAge(age);
-                player.setPosition(position);
-                player.setGoals(goals);
-                playerRepository.save(player);
-        }
+        player.setUuid(UUID.randomUUID().toString().replace("-", "").substring(0, 8));
+        player.setFirstName(firstName);
+        player.setLastName(lastName);
+        player.setAge(age);
+        player.setPosition(position);
+        player.setGoals(goals);
+        playerRepository.save(player);
+    }
 
     @Transactional
-    public void updatePlayer(String uuid ,String firstName, String lastName, int age, PositionType position, int goals) {
+    public void updatePlayer(String uuid, String firstName, String lastName, int age, PositionType position, int goals) {
         Player player = new Player(uuid);
         player.setFirstName(firstName);
         player.setLastName(lastName);
@@ -59,7 +59,7 @@ public class PlayerService extends PersonService {
     }
 
     @Transactional
-    public void deletePlayer(String uuid){
+    public void deletePlayer(String uuid) {
         playerRepository.deleteById(uuid);
     }
 }

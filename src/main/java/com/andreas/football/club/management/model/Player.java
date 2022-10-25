@@ -17,6 +17,7 @@ public class Player extends Person {
             joinColumns = @JoinColumn(name = "fan_uuid"),
             inverseJoinColumns = @JoinColumn(name = "player_uuid")
     )
+
     private Set<Fan> fansOfPLayers = new HashSet<>();
 
     @JsonIgnore

@@ -1,6 +1,6 @@
 package com.andreas.football.club.management.service;
 
-import com.andreas.football.club.management.dto.GetCoachDTO;
+import com.andreas.football.club.management.exceptions.EmptyCoachException;
 import com.andreas.football.club.management.model.Coach;
 import com.andreas.football.club.management.model.TacticType;
 import com.andreas.football.club.management.model.Team;
@@ -28,11 +28,7 @@ public class CoachService extends PersonService {
 
     @Transactional(readOnly = true)
     public Coach getCoaches(String uuid) {
-        Optional<Coach> optionalCoach = coachRepository.findById(uuid);
-        if (optionalCoach.isEmpty()) {
-            return null;
-        }
-        return optionalCoach.get();
+      return getCoach(uuid);
     }
 
     @Transactional
@@ -42,6 +38,13 @@ public class CoachService extends PersonService {
             return null;
         }
         return optionalTeam.get();
+    }
+    public Coach getCoach(String uuid){
+        Optional<Coach> optionalCoach = coachRepository.findById(uuid);
+        if (optionalCoach.isEmpty()) {
+            throw new EmptyCoachException();
+        }
+        return optionalCoach.get();
     }
 
     @Transactional
@@ -64,6 +67,8 @@ public class CoachService extends PersonService {
         coach.setAge(age);
         coach.setTactic(tactic);
         coach.setTeam(getTeam(teamUuid));
+
+        //todo
         Optional<Coach> optionalCoach = coachRepository.findById(uuid);
         team.setCoach(optionalCoach.get());
     }

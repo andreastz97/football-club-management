@@ -9,12 +9,14 @@ import java.util.List;
 @Table(name = "teams")
 public class Team {
     @JsonIgnore
-    @OneToMany(mappedBy = "team",  cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<Player> teamPlayers;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "coach_uuid", referencedColumnName = "uuid")
     private Coach coach;
+
 
     @Id
     @Column(name = "uuid")
@@ -78,7 +80,15 @@ public class Team {
     }
 
     public void setCoach(Coach coach) {
-            this.coach = coach;
+        this.coach = coach;
+    }
+
+    public void addPlayers(Team team ,List<Player> players) {
+        teamPlayers.addAll(players);
+
+        for (Player player : players) {
+            player.setTeam(team);
+        }
     }
 
 }
